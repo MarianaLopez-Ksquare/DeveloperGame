@@ -65,8 +65,8 @@ class Sequelize extends Seq {
       })
 
       await Categories.create({
-        name: "Async",
-        description: ""
+        name: "Asynchrony",
+        description: "In this section you will put in practice the main terms and uses about asynchrony"
       })
 
       await Categories.create({
@@ -209,7 +209,7 @@ class Sequelize extends Seq {
         b: "const = class",
         c: "Class",
         d: "class",
-        answer: "",
+        answer: "d",
       });
 
       await Questions.create({
@@ -238,20 +238,20 @@ class Sequelize extends Seq {
         categoryId: 3,
         levelId: 1,
         description: "The constructor method is called automatically when a new object is created?",
-        a: "True",
-        b: "False",
-        c: "",
-        d: "",
-        answer: "True",
+        a: "Yes",
+        b: "No",
+        c: "Sometimes",
+        d: "None above is correct",
+        answer: "a",
       });
 
       await Questions.create({
         categoryId: 3,
         levelId: 1,
         description: "The constructor method is a special method because ...?",
-        a: "",
-        b: "",
-        c: "",
+        a: "is part of the class",
+        b: "is a better sintax",
+        c: "is easier to use the method",
         d: "It is used to initialize object properties.",
         answer: "d",
       });
@@ -282,10 +282,10 @@ class Sequelize extends Seq {
         categoryId: 3,
         levelId: 1,
         description: "Once you create an object, you can add, remove or change properties of that object at any time.",
-        a: "False",
-        b: "True",
-        c: "",
-        d: "",
+        a: "No",
+        b: "Yes",
+        c: "Sometimes",
+        d: "Never",
         answer: "b",
       });
 
@@ -294,9 +294,9 @@ class Sequelize extends Seq {
         levelId: 1,
         description: "Name two ways two change the context of a JavaScript method",
         a: "Call or Apply",
-        b: "",
-        c: "",
-        d: "",
+        b: "Calling or Apply",
+        c: "Call or Applying",
+        d: "Next or Apply",
         answer: "a",
       });
 
@@ -372,9 +372,9 @@ class Sequelize extends Seq {
         levelId: 2,
         description: "What is the name of the property that allows you to add properties and methods to an object, as well as every object that inherits from it?",
         a: "The ‘prototype’ property.",
-        b: "",
-        c: "",
-        d: "",
+        b: "add prototype",
+        c: "class",
+        d: "None of the above",
         answer: "a",
       });
 
@@ -382,10 +382,10 @@ class Sequelize extends Seq {
         categoryId: 3,
         levelId: 2,
         description: "An object literal can be used to create private variables.",
-        a: "True",
-        b: "False",
-        c: "",
-        d: "",
+        a: "Yes",
+        b: "No",
+        c: "Sometimes",
+        d: "Never",
         answer: "b",
       });
 
@@ -393,9 +393,9 @@ class Sequelize extends Seq {
         categoryId: 3,
         levelId: 2,
         description: "What is the name of the object that refers to the application used to view a web page?",
-        a: "",
-        b: "",
-        c: "",
+        a: "constructor",
+        b: "variable",
+        c: "const",
         d: "navigator",
         answer: "d",
       });
@@ -404,10 +404,10 @@ class Sequelize extends Seq {
         categoryId: 3,
         levelId: 2,
         description: "Which object.property combination provides a reference to the protocol used to view the current web page?",
-        a: "",
-        b: "",
+        a: "location",
+        b: "{location.protocol}",
         c: "location.protocol",
-        d: "",
+        d: "[location.protocol]",
         answer: "c",
       });
 
@@ -427,9 +427,9 @@ class Sequelize extends Seq {
         categoryId: 3,
         levelId: 3,
         description: "When using the addEventListener() method to create a click-handler for a DOM element, what is the value of “this” inside of the callback you specify?.",
-        a: "",
-        b: "",
-        c: "",
+        a: "The EventListener",
+        b: "The button",
+        c: "The JS document",
         d: "The DOM element that was clicked.",
         answer: "d",
       });
@@ -440,8 +440,8 @@ class Sequelize extends Seq {
         description: "A JavaScript array is not an object",
         a: "False",
         b: "True",
-        c: "",
-        d: "",
+        c: "The question is wrong",
+        d: "Maybe",
         answer: "a",
       });
 
@@ -450,9 +450,9 @@ class Sequelize extends Seq {
         levelId: 3,
         description: "What are JavaScript objects?",
         a: "Are data structures that contain both properties and methods.",
-        b: "",
-        c: "",
-        d: "",
+        b: "A local storage",
+        c: "A template",
+        d: "Are data structures that contain methods",
         answer: "a",
       });
 
@@ -460,20 +460,20 @@ class Sequelize extends Seq {
         categoryId: 3,
         levelId: 3,
         description: "How do you check if an object is empty or not in Javascript?",
-        a: "",
-        b: "",
+        a: "using the Object() method",
+        b: "using the Object.empty()",
         c: "using the Object.keys() method",
-        d: "",
+        d: "using the Object method",
         answer: "c",
       });
 
       await Questions.create({
         categoryId: 3,
         levelId: 3,
-        description: "What are some of the common mistakes that developers make when using objects in JavaScript?",
-        a: "",
-        b: "",
-        c: "",
+        description: "What is one of the common mistakes that developers make when using objects in JavaScript?",
+        a: "Not knowing how the database is used",
+        b: "Trabajar con clases",
+        c: "work with classes",
         d: "assume that all objects are mutable.",
         answer: "d",
       });
@@ -482,10 +482,10 @@ class Sequelize extends Seq {
         categoryId: 3,
         levelId: 3,
         description: "what prototypal inheritance is?",
-        a: "",
+        a: "is a way of creating a DOM",
         b: "is a way of creating objects that inherit from other objects",
-        c: "",
-        d: "",
+        c: "is a way of creating attributes and parameters",
+        d: "is a way of creating variables",
         answer: "b",
       });
 
@@ -494,9 +494,9 @@ class Sequelize extends Seq {
         levelId: 3,
         description: "Why are closures important in JavaScript?",
         a: "they allow you to create variables that are only accessible within the scope of a function",
-        b: "",
-        c: "",
-        d: "",
+        b: "To make easier the document",
+        c: "they allow you to create constructors",
+        d: "they allow you to create targets",
         answer: "a",
       });
 
@@ -504,9 +504,9 @@ class Sequelize extends Seq {
         categoryId: 3,
         levelId: 3,
         description: "What are Arrow Functions?",
-        a: "",
-        b: "",
-        c: "",
+        a: "fundamental building blocks",
+        b: "a set of statements that performs a task",
+        c: "A list of parameters",
         d: "a new way to define functions in JavaScript.",
         answer: "d",
       });
@@ -516,9 +516,9 @@ class Sequelize extends Seq {
         levelId: 3,
         description: "What is Object Destructuring?",
         a: "is a clean way to assign array entries or object properties into their own variables.",
-        b: "",
-        c: "",
-        d: "",
+        b: "is a prototype-based language",
+        c: "Static methods and static fields",
+        d: "an array",
         answer: "a",
       });
 
@@ -640,9 +640,9 @@ class Sequelize extends Seq {
         levelId: 2,
         description: "What is BOM?",
         a: "Browser Object Model",
-        b: "",
-        c: "",
-        d: "",
+        b: "Browser Output Model",
+        c: "Browser Object Manager",
+        d: "Browser Object Mock",
         answer: "a",
       });
 
@@ -650,10 +650,10 @@ class Sequelize extends Seq {
         categoryId: 4,
         levelId: 2,
         description: "What is DOM? ",
-        a: "",
-        b: "",
+        a: "Direct Object Model",
+        b: "Document Output Model",
         c: "Document Object Model",
-        d: "",
+        d: "Documents Objects Models",
         answer: "c",
       });
 
@@ -661,9 +661,9 @@ class Sequelize extends Seq {
         categoryId: 4,
         levelId: 2,
         description: "What is the use of window object?",
-        a: "",
-        b: "",
-        c: "",
+        a: "is to represent a class",
+        b: "is to represent a variable",
+        c: "is to represent a display",
         d: "is created automatically by the browser that represents a window of a browser",
         answer: "d",
       });
@@ -673,9 +673,9 @@ class Sequelize extends Seq {
         levelId: 2,
         description: "What is the use of history object?",
         a: "can be used to switch to history pages such as back and forward from the current page or another page.",
-        b: "",
-        c: "",
-        d: "",
+        b: "To see the HTML",
+        c: "To know how to work with methods",
+        d: "None of above",
         answer: "a",
       });
 
@@ -683,10 +683,10 @@ class Sequelize extends Seq {
         categoryId: 4,
         levelId: 2,
         description: "How to write normal text code using JavaScript dynamically?",
-        a: "",
-        b: "",
+        a: "The joinText property",
+        b: "Simple text",
         c: "The innerText property is used to write the simple text using JavaScript dynamically.",
-        d: "",
+        d: "text using JavaScript dynamically",
         answer: "c",
       });
 
@@ -694,10 +694,10 @@ class Sequelize extends Seq {
         categoryId: 4,
         levelId: 2,
         description: "What does the isNaN() function?",
-        a: "",
-        b: "",
+        a: "returns false if the variable value is not a number.",
+        b: "returns true if the variable value is a function.",
         c: "returns true if the variable value is not a number.",
-        d: "",
+        d: "returns false if the variable value is bolean.",
         answer: "c",
       });
 
@@ -705,10 +705,10 @@ class Sequelize extends Seq {
         categoryId: 4,
         levelId: 2,
         description: "How to handle exceptions in JavaScript?",
-        a: "",
+        a: "if/else block",
         b: "try/catch block",
-        c: "",
-        d: "",
+        c: "else/else block",
+        d: "catch/try block",
         answer: "b",
       });
 
@@ -728,9 +728,9 @@ class Sequelize extends Seq {
         levelId: 2,
         description: "What is the use of a Map object in JavaScript?",
         a: "is used to map keys to values.",
-        b: "",
-        c: "",
-        d: "",
+        b: "is used to map classes to values.",
+        c: "is used to map constructors to values.",
+        d: "is used to map types to values.",
         answer: "a",
       });
 
@@ -738,10 +738,10 @@ class Sequelize extends Seq {
         categoryId: 4,
         levelId: 2,
         description: "Define anonymous function",
-        a: "",
-        b: "",
+        a: "It is a function that has the name anonymus",
+        b: "Is a pure function",
         c: "It is a function that has no name.",
-        d: "",
+        d: "Is an impure function",
         answer: "c",
       });
 
@@ -751,10 +751,10 @@ class Sequelize extends Seq {
         categoryId: 4,
         levelId: 3,
         description: "Can an anonymous function be assigned to a variable?",
-        a: "True",
-        b: "False",
-        c: "",
-        d: "",
+        a: "Yes",
+        b: "No",
+        c: "Sometimes",
+        d: "Never",
         answer: "a",
       });
       
@@ -762,9 +762,9 @@ class Sequelize extends Seq {
         categoryId: 4,
         levelId: 3,
         description: "In JavaScript what is an argument object?",
-        a: "",
-        b: "",
-        c: "",
+        a: "The parameters of JavaScript represent the methods that are passed to a function",
+        b: "A new way to name a class",
+        c: "A new way to name a object",
         d: "The variables of JavaScript represent the arguments that are passed to a function.",
         answer: "d",
       });
@@ -773,9 +773,9 @@ class Sequelize extends Seq {
         categoryId: 4,
         levelId: 3,
         description: "If we want to return the character from a specific index which method is used?",
-        a: "",
-        b: "",
-        c: "",
+        a: "varAt()",
+        b: "letAt()",
+        c: "stringAt()",
         d: "charAt()",
         answer: "d",
       });
@@ -818,9 +818,9 @@ class Sequelize extends Seq {
         levelId: 3,
         description: "Method used to cerate a new instance of http.Server in Node.js",
         a: "http.creteServer()",
-        b: "",
-        c: "",
-        d: "",
+        b: "https.creteServer()",
+        c: "https.cretesServers()",
+        d: "http.Server()",
         answer: "a",
       });
       
@@ -828,10 +828,10 @@ class Sequelize extends Seq {
         categoryId: 4,
         levelId: 3,
         description: "npm command can be used to install the webpack library as a development dependency",
-        a: "",
-        b: "",
+        a: "npm install webpack -- g --save-dev",
+        b: "npm install webpack ",
         c: "npm install webpack --save-dev",
-        d: "",
+        d: "npm install webpack -- d --save-dev",
         answer: "c",
       });
       
@@ -839,10 +839,10 @@ class Sequelize extends Seq {
         categoryId: 4,
         levelId: 3,
         description: "Types of modules that can be included in a Node.js application",
-        a: "",
+        a: "Third, local",
         b: "Third-party, core, local",
-        c: "",
-        d: "",
+        c: "Core, local",
+        d: "Third-party, cores, locals",
         answer: "b",
       });
       
@@ -850,9 +850,9 @@ class Sequelize extends Seq {
         categoryId: 4,
         levelId: 3,
         description: "Third-party module can be used to handle incoming HTTP request in Node.js",
-        a: "",
-        b: "",
-        c: "",
+        a: "Vue",
+        b: "Angular",
+        c: "React",
         d: "Express",
         answer: "d",
       });
@@ -861,10 +861,10 @@ class Sequelize extends Seq {
         categoryId: 4,
         levelId: 3,
         description: "Command used to step into the next line of code",
-        a: "",
-        b: "",
+        a: "sfdx",
+        b: "step",
         c: "next",
-        d: "",
+        d: "next line",
         answer: "c",
       });
 
