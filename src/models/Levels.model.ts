@@ -1,29 +1,24 @@
 import { Model, Sequelize, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional  } from "sequelize";
+import { Questions } from "./Questions.model";
 
-export class Admins extends Model<InferAttributes<Admins>, InferCreationAttributes<Admins>> {
+export class Levels extends Model<InferAttributes<Levels>, InferCreationAttributes<Levels>> {
   declare id: CreationOptional<number>; //Propiedades no van a ser emitidas en el js
-  declare uid: string;
   declare name: string;
 
   
   public static initModel(sequelize: Sequelize): void {
-    Admins.init({
+    Levels.init({
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      uid: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      name: {
-        type: DataTypes.STRING,
-        defaultValue: "",
-      },
     }, {
       sequelize
-    })
+    });
   }
 }
-

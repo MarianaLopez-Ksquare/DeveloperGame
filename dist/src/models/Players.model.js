@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Admins = void 0;
+exports.Players = void 0;
 const sequelize_1 = require("sequelize");
-class Admins extends sequelize_1.Model {
+class Players extends sequelize_1.Model {
     static initModel(sequelize) {
-        Admins.init({
+        Players.init({
             id: {
                 type: sequelize_1.DataTypes.INTEGER,
                 primaryKey: true,
@@ -16,11 +16,11 @@ class Admins extends sequelize_1.Model {
             },
             name: {
                 type: sequelize_1.DataTypes.STRING,
-                defaultValue: "",
+                allowNull: false,
             },
         }, {
             sequelize
         });
     }
 }
-exports.Admins = Admins;
+exports.Players = Players;

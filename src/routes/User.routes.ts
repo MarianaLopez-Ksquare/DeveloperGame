@@ -3,47 +3,32 @@ import { Router, Response,  Request } from "express";
 import { createUser, disableUser, getAllUser, readUser, updateUser, Role, createUserIfNotExist } from "../firebase";
 import { isAuthenticated } from "../middlewares/isAuthenticated";
 import { isAuthorized } from "../middlewares/isAuthorized"
-import { createDoctor, fetchDoctorById, updateDoctor } from "../repository/Doctor.repo";
-import { createPatient, fetchPatient, modifyIsActiveProp } from "../repository/Patient.repo";
+import { createPlayer, fetchPlayer } from "../repository/User.repo";
 import { getToken, getUIDFromToken } from "../repository/utils";
 const dotenv = require("dotenv");
 dotenv.config();
 
 export const UserRouter = Router();
 
-// Admin Endpoints
-UserRouter.get("/",isAuthenticated, isAuthorized( {roles: ["admin", "doctor"], allowSamerUser: true} ), async (req:Request, res: Response) => {
-    const { uid } = res.locals;
-    try {
-      const user = await readUser(uid);
-      return res.status(200).send(user);
-    } catch (error) {
-      res.status(500).send({error});
-    }
-  })
-
-
-///////////
-
 
 UserRouter.post("/signup", async (req: Request, res: Response) => {
   // Info desde el body
   // Checar si falta info
   // Checar que el rol sea adecuado
-  const {email, password, displayName, name, lastName, age, gender} = req.body;
+  const {email, password, name} = req.body;
     console.log(req.body)
-  if (!email || !displayName || !password || !name || !lastName || !age || !gender) {
+  if (!email || !name || !password) {
     return res.status(400).send({error: "Missing fields"});
   }
 
   try {
-    //Step 1: Create a User in FireBase in order to refers uid with our Patient model
-    const userId = await createUser(displayName, email, password, "patient");
-    //Step 2: Create a our model patient linked to uid firebase
-    const patient = await createPatient(userId, email, displayName, password, name, lastName, age, gender);
+    //Step 1: Create a User in FireBase in order to refers uid with our Player model
+    const userId = await createUser(name, email, password, "player");
+    //Step 2: Create a our model player linked to uid firebase
+    const player = await createPlayer(userId, name);
 
     res.status(201).send({
-        patient
+        player
     });
   } catch (error) {
     res.status(500).send({error});
@@ -76,35 +61,7 @@ UserRouter.post("/signin",async (req: Request, res: Response) => {
     }
 })
 
-
-// Llamado por admin y dueñño
-UserRouter.post("/active",isAuthenticated, isAuthorized( {roles: ["patient"], allowSamerUser: true} ), async (req:Request, res: Response) => {
-    const { is_active } = req.body;
-
-
-    if (!is_active) {
-        return res.status(400).send({error: "Missing is_active bool as url param"});
-    }
-    
-    const token = getToken(req);
-    const  uid  = await getUIDFromToken(token)
-    
-    if (!uid) {
-        return res.status(500).send({error: "error when trying to get uid"});
-    }
-
-    try {
-      const user = await modifyIsActiveProp(uid, is_active);
-      return res.status(200).send(user);
-    } catch (error) {
-      res.status(500).send({error});
-    }
-  })
-
-
-
-// Llamado por admin y dueñño
-UserRouter.get("/session", isAuthenticated, isAuthorized({roles: ["patient"], allowSamerUser: true}), async (req:Request, res: Response) => {
+UserRouter.get("/session", isAuthenticated, isAuthorized({roles: ["player"], allowSamerUser: true}), async (req:Request, res: Response) => {
     try {
         const token = getToken(req);
         
@@ -112,7 +69,7 @@ UserRouter.get("/session", isAuthenticated, isAuthorized({roles: ["patient"], al
         if (!uid) {
             return res.status(500).send({error: "UID was not found"});
         }
-        const user = await fetchPatient(uid);
+        const user = await fetchPlayer(uid);
         return res.status(200).send(user);
     } catch (error) {
         res.status(500).send({error});

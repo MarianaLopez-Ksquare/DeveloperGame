@@ -2,7 +2,7 @@ import * as admin from "firebase-admin";
 import { UserInfo } from "firebase-admin/lib/auth/user-record";
 
 
-export type Role = "patient" | "doctor" | "admin";
+export type Role = "player" | "admin";
 // Cuenta admin
 // admin@test.com / toor123
 
@@ -22,9 +22,8 @@ const mapToUser = (user: admin.auth.UserRecord) => {
   return {
     uid: user.uid,
     email: user.email,
-    userName: user.displayName,
+    name: user.displayName,
     role,
-    isDisabled: user.disabled,
   }
 }
 
@@ -59,7 +58,8 @@ export const readUser =async (uid: string) => {
 }
 
 
-export const getAllUser =async () => {
+
+export const getAllUser = async () => {
   const listOfUsers = await admin.auth().listUsers(10);
   const users = listOfUsers.users.map(mapToUser);
   return users;

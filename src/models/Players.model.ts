@@ -1,13 +1,13 @@
 import { Model, Sequelize, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional  } from "sequelize";
 
-export class Admins extends Model<InferAttributes<Admins>, InferCreationAttributes<Admins>> {
+
+export class Players extends Model<InferAttributes<Players>, InferCreationAttributes<Players>> {
   declare id: CreationOptional<number>; //Propiedades no van a ser emitidas en el js
   declare uid: string;
   declare name: string;
-
   
   public static initModel(sequelize: Sequelize): void {
-    Admins.init({
+    Players.init({
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -19,11 +19,10 @@ export class Admins extends Model<InferAttributes<Admins>, InferCreationAttribut
       },
       name: {
         type: DataTypes.STRING,
-        defaultValue: "",
+        allowNull: false,
       },
     }, {
       sequelize
     })
   }
 }
-

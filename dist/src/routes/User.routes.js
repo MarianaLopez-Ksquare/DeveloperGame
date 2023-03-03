@@ -18,39 +18,27 @@ const express_1 = require("express");
 const firebase_1 = require("../firebase");
 const isAuthenticated_1 = require("../middlewares/isAuthenticated");
 const isAuthorized_1 = require("../middlewares/isAuthorized");
-const Patient_repo_1 = require("../repository/Patient.repo");
+const User_repo_1 = require("../repository/User.repo");
 const utils_1 = require("../repository/utils");
 const dotenv = require("dotenv");
 dotenv.config();
 exports.UserRouter = (0, express_1.Router)();
-// Admin Endpoints
-exports.UserRouter.get("/", isAuthenticated_1.isAuthenticated, (0, isAuthorized_1.isAuthorized)({ roles: ["admin", "doctor"], allowSamerUser: true }), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { uid } = res.locals;
-    try {
-        const user = yield (0, firebase_1.readUser)(uid);
-        return res.status(200).send(user);
-    }
-    catch (error) {
-        res.status(500).send({ error });
-    }
-}));
-///////////
 exports.UserRouter.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // Info desde el body
     // Checar si falta info
     // Checar que el rol sea adecuado
-    const { email, password, displayName, name, lastName, age, gender } = req.body;
+    const { email, password, name } = req.body;
     console.log(req.body);
-    if (!email || !displayName || !password || !name || !lastName || !age || !gender) {
+    if (!email || !name || !password) {
         return res.status(400).send({ error: "Missing fields" });
     }
     try {
-        //Step 1: Create a User in FireBase in order to refers uid with our Patient model
-        const userId = yield (0, firebase_1.createUser)(displayName, email, password, "patient");
-        //Step 2: Create a our model patient linked to uid firebase
-        const patient = yield (0, Patient_repo_1.createPatient)(userId, email, displayName, password, name, lastName, age, gender);
+        //Step 1: Create a User in FireBase in order to refers uid with our Player model
+        const userId = yield (0, firebase_1.createUser)(name, email, password, "player");
+        //Step 2: Create a our model player linked to uid firebase
+        const player = yield (0, User_repo_1.createPlayer)(userId, name);
         res.status(201).send({
-            patient
+            player
         });
     }
     catch (error) {
@@ -80,34 +68,14 @@ exports.UserRouter.post("/signin", (req, res) => __awaiter(void 0, void 0, void 
         res.status(500).send({ error });
     }
 }));
-// Llamado por admin y dueñño
-exports.UserRouter.post("/active", isAuthenticated_1.isAuthenticated, (0, isAuthorized_1.isAuthorized)({ roles: ["patient"], allowSamerUser: true }), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { is_active } = req.body;
-    if (!is_active) {
-        return res.status(400).send({ error: "Missing is_active bool as url param" });
-    }
-    const token = (0, utils_1.getToken)(req);
-    const uid = yield (0, utils_1.getUIDFromToken)(token);
-    if (!uid) {
-        return res.status(500).send({ error: "error when trying to get uid" });
-    }
-    try {
-        const user = yield (0, Patient_repo_1.modifyIsActiveProp)(uid, is_active);
-        return res.status(200).send(user);
-    }
-    catch (error) {
-        res.status(500).send({ error });
-    }
-}));
-// Llamado por admin y dueñño
-exports.UserRouter.get("/session", isAuthenticated_1.isAuthenticated, (0, isAuthorized_1.isAuthorized)({ roles: ["patient"], allowSamerUser: true }), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.UserRouter.get("/session", isAuthenticated_1.isAuthenticated, (0, isAuthorized_1.isAuthorized)({ roles: ["player"], allowSamerUser: true }), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const token = (0, utils_1.getToken)(req);
         const uid = yield (0, utils_1.getUIDFromToken)(token);
         if (!uid) {
             return res.status(500).send({ error: "UID was not found" });
         }
-        const user = yield (0, Patient_repo_1.fetchPatient)(uid);
+        const user = yield (0, User_repo_1.fetchPlayer)(uid);
         return res.status(200).send(user);
     }
     catch (error) {

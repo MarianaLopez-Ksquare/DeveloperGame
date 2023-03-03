@@ -43,7 +43,10 @@ function main() {
         try {
             admin.initializeApp();
             yield db_1.sequelize.authenticate();
-            yield db_1.sequelize.sync({ force: false });
+            yield db_1.sequelize.association();
+            yield db_1.sequelize.sync({ force: true });
+            yield db_1.sequelize.seedData();
+            yield db_1.sequelize.syncFireBase();
             console.log("db connected...");
         }
         catch (error) {

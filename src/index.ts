@@ -6,7 +6,10 @@ async function main() {
   try {
     admin.initializeApp();
     await sequelize.authenticate();
-    await sequelize.sync({force: false});
+    await sequelize.association();
+    await sequelize.sync({force: true});
+    await sequelize.seedData();
+    await sequelize.syncFireBase();
     console.log("db connected...");
   } catch (error) {
     console.error(error);

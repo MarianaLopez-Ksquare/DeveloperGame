@@ -43,9 +43,8 @@ const mapToUser = (user) => {
     return {
         uid: user.uid,
         email: user.email,
-        userName: user.displayName,
+        name: user.displayName,
         role,
-        isDisabled: user.disabled,
     };
 };
 const createUser = (displayName, email, password, role) => __awaiter(void 0, void 0, void 0, function* () {
